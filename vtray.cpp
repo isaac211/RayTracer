@@ -5,7 +5,7 @@ using std::cerr;
 using std::isdigit;
 using std::string;
 
-static inline void printError(char* error, bool help = true);
+static inline void printError(const char* error, bool help = true);
 
 int main(int argc, char *argv[])
 {
@@ -25,11 +25,19 @@ int main(int argc, char *argv[])
 		else
 			threads = std::stoi(argv[2]);
 	}
-	//TODO call other functions
+	try
+	{
+		//TODO call other functions
+	}
+	catch (std::exception& error)
+	{
+		printError(error.what(), false);
+		return EXIT_FAILURE;
+	}
 	return EXIT_SUCCESS;
 }
 
-static inline void printError(char* error, bool help)
+static inline void printError(const char* error, bool help)
 {
 	cerr << error << '\n';
 	if (help)
