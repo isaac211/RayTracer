@@ -13,7 +13,10 @@ find_package(Qt5 COMPONENTS Gui REQUIRED)
 
 # EDIT: add your (non-test) source files to this list
 set(src
-  
+  light.cpp
+  light.hpp
+  camera.cpp
+  camera.hpp
   )
 
 # EDIT: add any additional test source files to this list
