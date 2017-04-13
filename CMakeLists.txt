@@ -23,6 +23,8 @@ set(src
   sphere.hpp
   plane.cpp
   plane.hpp
+  environment.cpp
+  environment.hpp
   )
 
 # EDIT: add any additional test source files to this list

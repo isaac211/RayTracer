@@ -1,3 +1,5 @@
+#ifndef _LIGHT_HPP_
+#define _LIGHT_HPP_
 typedef float intensityType;
 #include "camera.hpp"
 
@@ -11,3 +13,4 @@ private:
 	intensityType intensity;
 	coords3D location;
 };
+#endif

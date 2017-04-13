@@ -1,3 +1,5 @@
+#ifndef _CAMERA_HPP_
+#define _CAMERA_HPP_
 #include <cstdint>
 #include <utility>
 using std::make_pair;
@@ -31,3 +33,4 @@ private:
 	resolutionType resolution;
 	coords3D normal;
 };
+#endif

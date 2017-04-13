@@ -1,3 +1,5 @@
+#ifndef _OBJECT_HPP_
+#define _OBJECT_HPP_
 #include "camera.hpp"
 
 typedef float lambertType;
@@ -15,3 +17,4 @@ protected:
 	colorType color;
 	lambertType lambert;
 };
+#endif
