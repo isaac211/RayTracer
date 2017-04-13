@@ -37,14 +37,22 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) && !defined(__CYGWIN__)
 static inline void printError(const char* error, bool help)
 {
 	cerr << error << '\n';
 	if (help)
 		cerr <<
 		"Instructions for use:\n"
-		"Linux:\n"
-		"./vtray [-t <# of threads>] <JSON> <PNG>\n"
-		"Windows:\n"
 		".\vtray.exe [-t <# of threads>] <JSON> <PNG>\n";
 }
+#else
+static inline void printError(const char* error, bool help)
+{
+	cerr << error << '\n';
+	if (help)
+		cerr <<
+		"Instructions for use:\n"
+		"./vtray [-t <# of threads>] <JSON> <PNG>\n";
+}
+#endif
