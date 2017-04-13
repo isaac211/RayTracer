@@ -17,6 +17,8 @@ set(src
   light.hpp
   camera.cpp
   camera.hpp
+  object.cpp
+  object.hpp
   )
 
 # EDIT: add any additional test source files to this list
