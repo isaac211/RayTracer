@@ -5,9 +5,9 @@ typedef float lambertType;
 class Object
 {
 public:
-	Object();
+	Object(coords3D center, colorType color, lambertType lambert = 0);
 
-private:
+protected:
 	coords3D center;
 	colorType color;
 	lambertType lambert;
