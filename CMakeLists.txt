@@ -19,6 +19,10 @@ set(src
   camera.hpp
   object.cpp
   object.hpp
+  sphere.cpp
+  sphere.hpp
+  plane.cpp
+  plane.hpp
   )
 
 # EDIT: add any additional test source files to this list
