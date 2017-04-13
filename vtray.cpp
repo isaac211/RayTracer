@@ -44,7 +44,7 @@ static inline void printError(const char* error, bool help)
 		cerr <<
 		"Instructions for use:\n"
 		"Linux:\n"
-		"./vtray [-t <# of threads>] JSON PNG\n"
+		"./vtray [-t <# of threads>] <JSON> <PNG>\n"
 		"Windows:\n"
-		".\vtray.exe [-t <# of threads>] JSON PNG\n";
+		".\vtray.exe [-t <# of threads>] <JSON> <PNG>\n";
 }
