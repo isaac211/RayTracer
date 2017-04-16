@@ -11,13 +11,13 @@ typedef double coordsType;
 
 struct coords3D
 {
-	coords3D() : x(0.), y(0.), z(0.) {}
+	coords3D(coordsType xin = 0., coordsType yin = 0., coordsType zin = 0.) : x(xin), y(yin), z(zin) {}
 	coordsType x, y, z;
 };
 
 struct colorType
 {
-	colorType() : r(0),g(0),b(0) {}
+	colorType(rgbType rin = 0, rgbType gin = 0, rgbType bin = 0) : r(rin),g(gin),b(bin) {}
 	rgbType r, g, b;
 };
 
