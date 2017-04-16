@@ -11,20 +11,31 @@ typedef double coordsType;
 
 struct coords3D
 {
-	coords3D(coordsType xin = 0, coordsType yin = 0, coordsType zin = 0) : x(xin), y(yin), z(zin) {}
+	coords3D() : x(0.), y(0.), z(0.) {}
 	coordsType x, y, z;
 };
 
 struct colorType
 {
-	colorType(rgbType rin = 0, rgbType gin = 0, rgbType bin = 0) : r(rin),g(gin),b(bin) {}
+	colorType() : r(0),g(0),b(0) {}
 	rgbType r, g, b;
 };
 
 class Camera
 {
 public:
-	Camera();
+	Camera(coords3D c = coords3D(),
+		sizingType s = sizingType(),
+		focusType f = 0,
+		resolutionType r = resolutionType(),
+		coords3D n = coords3D()
+		);
+
+	coords3D getCenter() const;
+	sizingType getSize() const;
+	focusType getFocus() const;
+	resolutionType getResolution() const;
+	coords3D getNormal() const;
 
 private:
 	coords3D center;

@@ -7,7 +7,9 @@ typedef float intensityType;
 class Light
 {
 public:
-	Light();
+	Light(coords3D loc = coords3D(), intensityType inten = 0.);
+	intensityType getIntensity() const;
+	coords3D getLocation() const;
 
 private:
 	intensityType intensity;

@@ -7,7 +7,7 @@ typedef float lambertType;
 class Object
 {
 public:
-	Object(coords3D cent, colorType cl, lambertType lamb = 0);
+	Object(coords3D cent = coords3D(), colorType cl = colorType(), lambertType lamb = 0);
 	coords3D getCenter();
 	colorType getColor();
 	lambertType getLambert();

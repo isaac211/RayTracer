@@ -29,24 +29,10 @@ protected:
 	Camera camera;
 
 private:
-	void setCamera
-		(
-			const coords3D &center,
-			const sizingType &size,
-			const focusType &focus,
-			const resolutionType &resolution,
-			const coords3D &normal
-			);
+	void setCamera (const QJsonObject &object);
 
-	void pushLight
-		(
-			const intensityType &intensity,
-			const coords3D &location
-			);
+	void pushLight (const QJsonObject &object);
 
-	void pushObject
-		(
-
-			);
+	void pushObject (const QJsonObject &object);
 };
 #endif
