@@ -10,6 +10,8 @@
 #include "qimage.h"
 #include "qfile.h"
 #include "qstring.h"
+#include "qjsonobject.h"
+#include "qjsonarray.h"
 
 typedef std::vector<Object> objectList;
 typedef std::vector<Light> lightList;
@@ -25,5 +27,26 @@ protected:
 	objectList objects;
 	lightList lights;
 	Camera camera;
+
+private:
+	void setCamera
+		(
+			const coords3D &center,
+			const sizingType &size,
+			const focusType &focus,
+			const resolutionType &resolution,
+			const coords3D &normal
+			);
+
+	void pushLight
+		(
+			const intensityType &intensity,
+			const coords3D &location
+			);
+
+	void pushObject
+		(
+
+			);
 };
 #endif

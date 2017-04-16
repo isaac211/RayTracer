@@ -12,7 +12,10 @@ void Environment::unpackJSON(const QString &path)
 	QJsonDocument jsonDoc = QJsonDocument::fromJson(file.readAll(), &JsonParseError);
 	file.close();
 
+	QJsonObject rootObject = jsonDoc.object();
+
 	//TODO read into variables
+	//TODO write functions to do the above
 }
 
 void Environment::printImage()
