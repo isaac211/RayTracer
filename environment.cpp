@@ -1,6 +1,7 @@
 #include "environment.hpp"
 
-Environment::Environment()
+Environment::Environment(objectList o, lightList l, Camera c)
+	: objects(o), lights(l), camera(c)
 {
 }
 

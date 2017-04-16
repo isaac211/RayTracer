@@ -19,7 +19,7 @@ typedef std::vector<Light> lightList;
 class Environment
 {
 public:
-	Environment();
+	Environment(objectList o = objectList(), lightList l = lightList(), Camera c = Camera());
 	void unpackJSON(const QString &path);
 	void printImage();
 
