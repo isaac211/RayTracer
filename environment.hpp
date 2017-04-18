@@ -25,18 +25,12 @@ public:
 	Environment(objectList o = objectList(), lightList l = lightList(), Camera c = Camera());
 	void unpackJSON(const QString &path);
 	void unpackJSON(const string &path);
+	void unpackJSON(const char *path);
 	void printImage();
 
 protected:
 	objectList objects;
 	lightList lights;
 	Camera camera;
-
-private:
-	void setCamera (const QJsonObject &object);
-
-	void pushLight (const QJsonObject &object);
-
-	void pushObject (const QJsonObject &object);
 };
 #endif

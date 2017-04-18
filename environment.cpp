@@ -112,6 +112,10 @@ void Environment::unpackJSON(const string &path)
 {
 	unpackJSON(QString::fromStdString(path));
 }
+void Environment::unpackJSON(const char *path)
+{
+	unpackJSON(QString(path));
+}
 
 void Environment::printImage()
 {
