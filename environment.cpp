@@ -14,9 +14,74 @@ void Environment::unpackJSON(const QString &path)
 	file.close();
 
 	QJsonObject rootObject = jsonDoc.object();
+	QJsonArray camArray = rootObject["camera"].toArray();
+	QJsonArray lightArray = rootObject["lights"].toArray();
+	QJsonArray objArray = rootObject["objects"].toArray();
 
-	//TODO read into variables
-	//TODO write functions to do the above
+	foreach (const QJsonValue &value, camArray)
+	{
+		auto camObj = value.toObject();
+
+		auto centerObj = camObj["center"].toObject();
+		auto sizeObj = camObj["size"].toArray();
+		auto resolObj = camObj["resolution"].toArray();
+		auto normalObj = camObj["normal"].toObject();
+
+		coords3D center(
+			centerObj["x"].toDouble(), centerObj["y"].toDouble(), centerObj["z"].toDouble()
+			);
+
+		sizingType size(sizeObj[0].toInt(), sizeObj[1].toInt());
+
+		resolutionType resolution(resolObj[0].toDouble(), resolObj[1].toDouble());
+
+		coords3D normal(
+			normalObj["x"].toDouble(), normalObj["y"].toDouble(), normalObj["z"].toDouble()
+			);
+		
+		camera = Camera(
+			center,
+			size,
+			(unsigned int)camObj["focus"].toInt(),
+			resolution,
+			normal
+			);
+	}
+
+	foreach (const QJsonValue &value, lightArray)
+	{
+		auto lightObj = value.toObject();
+
+		auto locObj = lightObj["location"].toObject();
+
+		lights.push_back(
+			Light(
+				coords3D(locObj["x"].toDouble(),
+					locObj["y"].toDouble(),
+					locObj["z"].toDouble()
+					),
+				(float)lightObj["intensity"].toDouble()
+				)
+			);
+	}
+
+	foreach  (const QJsonValue &value, objArray)
+	{
+		auto obj = value.toObject();
+
+		auto centerObj = obj["center"].toObject();
+		auto colorObj = obj["color"].toObject();
+
+		if (obj["type"].toString() == "sphere")
+		{
+			//objects.push_back(Sphere());//TODO define Sphere constructor
+		}
+
+		else if (obj["type"].toString() == "plane")
+		{
+			;//TODO define Plane constructor
+		}
+	}
 }
 
 void Environment::printImage()
