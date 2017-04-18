@@ -8,9 +8,9 @@ class Object
 {
 public:
 	Object(coords3D cent = coords3D(), colorType cl = colorType(), lambertType lamb = 0);
-	coords3D getCenter();
-	colorType getColor();
-	lambertType getLambert();
+	coords3D getCenter() const;
+	colorType getColor() const;
+	lambertType getLambert() const;
 
 protected:
 	coords3D center;
