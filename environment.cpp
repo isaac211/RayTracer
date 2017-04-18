@@ -5,9 +5,10 @@ Environment::Environment(objectList o, lightList l, Camera c)
 {
 }
 
-void Environment::unpackJSON(const QString &path)
+void Environment::unpackJSON(const string &path)
 {
-	QFile file(path);
+	QString qpath = QString::fromStdString(path);
+	QFile file(qpath);
 	file.open(QIODevice::ReadOnly | QIODevice::Text);
 	QJsonParseError JsonParseError;
 	QJsonDocument jsonDoc = QJsonDocument::fromJson(file.readAll(), &JsonParseError);

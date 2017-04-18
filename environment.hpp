@@ -12,6 +12,9 @@
 #include "qstring.h"
 #include "qjsonobject.h"
 #include "qjsonarray.h"
+#include <string>
+
+using std::string;
 
 typedef std::vector<Object> objectList;
 typedef std::vector<Light> lightList;
@@ -20,7 +23,7 @@ class Environment
 {
 public:
 	Environment(objectList o = objectList(), lightList l = lightList(), Camera c = Camera());
-	void unpackJSON(const QString &path);
+	void unpackJSON(const string &path);
 	void printImage();
 
 protected:

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cctype>
 #include <string>
+#include "environment.hpp"
 using std::cerr;
 using std::isdigit;
 using std::string;
@@ -10,13 +11,14 @@ static inline void printError(const char* error, bool help = true);
 int main(int argc, char *argv[])
 {
 	unsigned int threads = 1;
+	string jsonFile, pngFile;
 	if (argc < 3 || argc > 5)
 	{
 		printError("Error: Incorrect number of arguments.");
 		return EXIT_FAILURE;
 	}
 
-	for (unsigned int i = 1; i < 5; ++i)
+	for (unsigned int i = 1; i < 6; ++i)
 	{
 		if (argv[i] == "-t")
 		{
@@ -28,9 +30,21 @@ int main(int argc, char *argv[])
 			else
 				threads = std::stoi(argv[i+1]);
 		}
+
+		if (string(argv[i]).find(".json") != string::npos)
+		{
+			if (string(argv[i+1]).find(".png") != string::npos)
+			{
+				jsonFile = argv[i];
+				pngFile = argv[i + 1];
+			}
+		}
 	}
+
 	try
 	{
+		Environment run;
+		run.unpackJSON(jsonFile);
 		//TODO call other functions
 	}
 	catch (std::exception& error)
