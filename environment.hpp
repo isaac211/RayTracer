@@ -23,6 +23,7 @@ class Environment
 {
 public:
 	Environment(objectList o = objectList(), lightList l = lightList(), Camera c = Camera());
+	void unpackJSON(const QString &path);
 	void unpackJSON(const string &path);
 	void printImage();
 

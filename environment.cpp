@@ -5,10 +5,9 @@ Environment::Environment(objectList o, lightList l, Camera c)
 {
 }
 
-void Environment::unpackJSON(const string &path)
+void Environment::unpackJSON(const QString &path)
 {
-	QString qpath = QString::fromStdString(path);
-	QFile file(qpath);
+	QFile file(path);
 	file.open(QIODevice::ReadOnly | QIODevice::Text);
 	QJsonParseError JsonParseError;
 	QJsonDocument jsonDoc = QJsonDocument::fromJson(file.readAll(), &JsonParseError);
@@ -108,6 +107,10 @@ void Environment::unpackJSON(const string &path)
 				));
 		}
 	}
+}
+void Environment::unpackJSON(const string &path)
+{
+	unpackJSON(QString::fromStdString(path));
 }
 
 void Environment::printImage()
