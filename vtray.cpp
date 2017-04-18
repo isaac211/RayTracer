@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 		return EXIT_FAILURE;
 	}
 
-	for (unsigned int i = 1; i < 6; ++i)
+	for (unsigned int i = 1; i < argc; ++i)
 	{
 		if (argv[i] == "-t")
 		{
