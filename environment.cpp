@@ -14,40 +14,38 @@ void Environment::unpackJSON(const QString &path)
 	file.close();
 
 	QJsonObject rootObject = jsonDoc.object();
-	QJsonArray camArray = rootObject["camera"].toArray();
+	QJsonObject camObj = rootObject["camera"].toObject();
 	QJsonArray lightArray = rootObject["lights"].toArray();
 	QJsonArray objArray = rootObject["objects"].toArray();
 
-	foreach (const QJsonValue &value, camArray)
-	{
-		auto camObj = value.toObject();
 
-		auto centerObj = camObj["center"].toObject();
-		auto sizeObj = camObj["size"].toArray();
-		auto resolObj = camObj["resolution"].toArray();
-		auto normalObj = camObj["normal"].toObject();
+	//camera parsing
+	auto centerObj = camObj["center"].toObject();
+	auto sizeObj = camObj["size"].toArray();
+	auto resolObj = camObj["resolution"].toArray();
+	auto normalObj = camObj["normal"].toObject();
 
-		coords3D center(
-			centerObj["x"].toDouble(), centerObj["y"].toDouble(), centerObj["z"].toDouble()
-			);
+	coords3D center(
+		centerObj["x"].toDouble(), centerObj["y"].toDouble(), centerObj["z"].toDouble()
+		);
 
-		sizingType size(sizeObj[0].toInt(), sizeObj[1].toInt());
+	sizingType size(sizeObj[0].toInt(), sizeObj[1].toInt());
 
-		resolutionType resolution(resolObj[0].toDouble(), resolObj[1].toDouble());
+	resolutionType resolution(resolObj[0].toDouble(), resolObj[1].toDouble());
 
-		coords3D normal(
-			normalObj["x"].toDouble(), normalObj["y"].toDouble(), normalObj["z"].toDouble()
-			);
-		
-		camera = Camera(
-			center,
-			size,
-			(unsigned int)camObj["focus"].toInt(),
-			resolution,
-			normal
-			);
-	}
+	coords3D normal(
+		normalObj["x"].toDouble(), normalObj["y"].toDouble(), normalObj["z"].toDouble()
+		);
+	
+	camera = Camera(
+		center,
+		size,
+		(unsigned int)camObj["focus"].toInt(),
+		resolution,
+		normal
+		);
 
+	//Light parsing
 	foreach (const QJsonValue &value, lightArray)
 	{
 		auto lightObj = value.toObject();
@@ -65,6 +63,7 @@ void Environment::unpackJSON(const QString &path)
 			);
 	}
 
+	//object parsing
 	foreach  (const QJsonValue &value, objArray)
 	{
 		auto obj = value.toObject();
