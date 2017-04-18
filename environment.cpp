@@ -74,12 +74,38 @@ void Environment::unpackJSON(const QString &path)
 
 		if (obj["type"].toString() == "sphere")
 		{
-			//objects.push_back(Sphere());//TODO define Sphere constructor
+			objects.push_back(Sphere(
+				coords3D(
+					centerObj["x"].toDouble(),
+					centerObj["y"].toDouble(),
+					centerObj["z"].toDouble()),
+				colorType(
+					colorObj["r"].toInt(),
+					colorObj["g"].toInt(),
+					colorObj["b"].toInt()),
+				(float)obj["lambert"].toDouble(),
+				obj["radius"].toDouble()
+				));
 		}
 
 		else if (obj["type"].toString() == "plane")
 		{
-			;//TODO define Plane constructor
+			auto normalObj = obj["normal"].toObject();
+			objects.push_back(Plane(
+				coords3D(
+					centerObj["x"].toDouble(),
+					centerObj["y"].toDouble(),
+					centerObj["z"].toDouble()),
+				colorType(
+					colorObj["r"].toInt(),
+					colorObj["g"].toInt(),
+					colorObj["b"].toInt()),
+				(float)obj["lambert"].toDouble(),
+				coords3D(
+					normalObj["x"].toDouble(),
+					normalObj["y"].toDouble(),
+					normalObj["z"].toDouble())
+				));
 		}
 	}
 }
