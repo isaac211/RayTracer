@@ -4,7 +4,13 @@
 class Plane : public Object
 {
 public:
-	Plane();
+	Plane(coords3D cent = coords3D(),
+		colorType cl = colorType(),
+		lambertType lamb = 0,
+		coords3D norm = coords3D());
+
+	coords3D getNormal() const;
+
 private:
 	coords3D normal;
 };
