@@ -26,7 +26,9 @@ public:
 	void unpackJSON(const QString &path);
 	void unpackJSON(const string &path);
 	void unpackJSON(const char *path);
-	void printImage();
+
+	void printImage(const QString &path);
+	void printImage(const string &path);
 
 protected:
 	objectList objects;

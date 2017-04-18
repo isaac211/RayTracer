@@ -45,6 +45,7 @@ int main(int argc, char *argv[])
 	{
 		Environment run;
 		run.unpackJSON(jsonFile);
+		run.printImage(pngFile);
 		//TODO call other functions
 	}
 	catch (std::exception& error)
