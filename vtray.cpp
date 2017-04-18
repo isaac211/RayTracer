@@ -15,15 +15,19 @@ int main(int argc, char *argv[])
 		printError("Error: Incorrect number of arguments.");
 		return EXIT_FAILURE;
 	}
-	else if (argv[1] == "-t")
+
+	for (unsigned int i = 1; i < 5; ++i)
 	{
-		if (!isdigit(argv[2][0]) || string(argv[2]).size() > 1)
+		if (argv[i] == "-t")
 		{
-			printError("Error: Please specify valid number of threads.");
-			return EXIT_FAILURE;
+			if (!isdigit(argv[i+1][0]) || string(argv[i+1]).size() > 1)
+			{
+				printError("Error: Please specify valid number of threads.");
+				return EXIT_FAILURE;
+			}
+			else
+				threads = std::stoi(argv[i+1]);
 		}
-		else
-			threads = std::stoi(argv[2]);
 	}
 	try
 	{
