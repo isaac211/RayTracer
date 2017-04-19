@@ -11,6 +11,25 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 		Environment A;
 		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene0.json"));
 
+		SECTION("camera")
+		{
+			REQUIRE(A.getCamera().getCenter().x == 0);
+			REQUIRE(A.getCamera().getCenter().y == 0);
+			REQUIRE(A.getCamera().getCenter().z == 0);
+			REQUIRE(A.getCamera().getFocus() == 10);
+			REQUIRE(A.getCamera().getNormal().x == 0);
+			REQUIRE(A.getCamera().getNormal().y == 0);
+			REQUIRE(A.getCamera().getNormal().z == 1);
+			REQUIRE(A.getCamera().getResolution().first == 0.01);
+			REQUIRE(A.getCamera().getResolution().second == 0.01);
+			REQUIRE(A.getCamera().getSize().first == 256);
+			REQUIRE(A.getCamera().getSize().second == 256);
+		}
+
+		SECTION("lights")
+		{
+
+		}
 	}
 }
 // IMPORTANT NOTE:
