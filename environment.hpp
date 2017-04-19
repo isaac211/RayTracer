@@ -13,6 +13,7 @@
 #include "qjsonobject.h"
 #include "qjsonarray.h"
 #include <string>
+#include "qdebug.h"
 
 using std::string;
 
