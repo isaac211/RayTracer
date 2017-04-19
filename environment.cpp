@@ -7,21 +7,22 @@ Environment::Environment(objectList o, lightList l, Camera c)
 
 void Environment::unpackJSON(const QString &path)
 {
+	//Read in file contents and store in QJsonDocument type
 	QFile file(path);
 	file.open(QIODevice::ReadOnly | QIODevice::Text);
 	QJsonParseError JsonParseError;
 	QJsonDocument jsonDoc = QJsonDocument::fromJson(file.readAll(), &JsonParseError);
 	file.close();
 
+	//Check for parsing errors; throw if detected.
 	if (JsonParseError.error != QJsonParseError::NoError)
 		throw std::runtime_error("Error: Failed to parse JSON!");
 
+	//Store camera, lights, and objects in convenient data types
 	QJsonObject rootObject = jsonDoc.object();
 	QJsonObject camObj = rootObject["camera"].toObject();
 	QJsonArray lightArray = rootObject["lights"].toArray();
 	QJsonArray objArray = rootObject["objects"].toArray();
-
-	qDebug() << camObj;
 
 	//camera parsing
 	auto centerObj = camObj["center"].toObject();
@@ -54,8 +55,6 @@ void Environment::unpackJSON(const QString &path)
 	{
 		auto lightObj = value.toObject();
 
-		qDebug() << lightObj;
-
 		auto locObj = lightObj["location"].toObject();
 
 		lights.push_back(
@@ -73,8 +72,6 @@ void Environment::unpackJSON(const QString &path)
 	foreach  (const QJsonValue &value, objArray)
 	{
 		auto obj = value.toObject();
-
-		qDebug() << obj;
 
 		auto centerObj = obj["center"].toObject();
 		auto colorObj = obj["color"].toObject();
