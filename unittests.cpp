@@ -2,6 +2,17 @@
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"
 
+#include "environment.hpp"
+
+TEST_CASE("Test JSON Parser", "[JSON]")
+{
+	SECTION("scene 0")
+	{
+		Environment A;
+		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene0.json"));
+
+	}
+}
 // IMPORTANT NOTE:
 // These are just a few examples from my solution and **should be removed**.
 // Depending on your code design your class and functions names would differ

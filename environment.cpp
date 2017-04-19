@@ -121,6 +121,11 @@ void Environment::unpackJSON(const string &path)
 	unpackJSON(QString::fromStdString(path));
 }
 
+void Environment::unpackJSON(const char* path)
+{
+	unpackJSON(QString(path));
+}
+
 void Environment::printImage(const QString &path)
 {
 
@@ -129,4 +134,24 @@ void Environment::printImage(const QString &path)
 void Environment::printImage(const string &path)
 {
 	printImage(QString::fromStdString(path));
+}
+
+void Environment::printImage(const char* path)
+{
+	printImage(QString(path));
+}
+
+	objectList Environment::getObjects() const
+{
+	return objects;
+}
+
+	lightList Environment::getLights() const
+{
+	return lights;
+}
+
+	Camera Environment::getCamera() const
+{
+	return camera;
 }
