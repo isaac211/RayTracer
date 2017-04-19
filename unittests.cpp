@@ -26,9 +26,23 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 			REQUIRE(A.getCamera().getSize().second == 256);
 		}
 
+
 		SECTION("lights")
 		{
+			REQUIRE(A.getLights()[0].getIntensity() == 1);
+			REQUIRE(A.getLights()[0].getLocation().x == 5);
+			REQUIRE(A.getLights()[0].getLocation().y == -5);
+			REQUIRE(A.getLights()[0].getLocation().z == 0);
+		}
 
+		SECTION("objects")
+		{
+			REQUIRE(A.getObjects()[0].getCenter().x == 0);
+			REQUIRE(A.getObjects()[0].getCenter().y == 0);
+			REQUIRE(A.getObjects()[0].getCenter().z == 5);
+			REQUIRE(A.getObjects()[0].getColor().b == 0);
+			REQUIRE(A.getObjects()[0].getColor().g == 0);
+			REQUIRE(A.getObjects()[0].getColor().r == 255);
 		}
 	}
 }
