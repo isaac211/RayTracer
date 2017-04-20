@@ -9,6 +9,7 @@ Sphere::Sphere(coords3D cent,
 	center = cent;
 	color = cl;
 	radius = rad;
+	lambert = lamb;
 }
 
 radiusType Sphere::getRadius() const

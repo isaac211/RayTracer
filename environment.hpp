@@ -17,13 +17,14 @@
 
 using std::string;
 
-typedef std::vector<Object*> objectList;
+typedef std::vector<Sphere> sphereList;
+typedef std::vector<Plane> planeList;
 typedef std::vector<Light> lightList;
 
 class Environment
 {
 public:
-	Environment(objectList o = objectList(), lightList l = lightList(), Camera c = Camera());
+	Environment(sphereList s = sphereList(), planeList p = planeList(), lightList l = lightList(), Camera c = Camera());
 	void unpackJSON(const QString &path);
 	void unpackJSON(const string &path);
 	void unpackJSON(const char* path);
@@ -32,12 +33,14 @@ public:
 	void printImage(const string &path);
 	void printImage(const char* path);
 
-	objectList getObjects() const;
+	planeList getPlanes() const;
+	sphereList getSpheres() const;
 	lightList getLights() const;
 	Camera getCamera() const;
 
 protected:
-	objectList objects;
+	sphereList spheres;
+	planeList planes;
 	lightList lights;
 	Camera camera;
 };
