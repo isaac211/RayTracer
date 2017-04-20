@@ -107,4 +107,10 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 			}
 		}
 	}
+
+	SECTION("scene 4")
+	{
+		Environment A;
+		REQUIRE_THROWS(A.unpackJSON("../tests/scene4.json"));
+	}
 }

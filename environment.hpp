@@ -13,9 +13,11 @@
 #include "qjsonobject.h"
 #include "qjsonarray.h"
 #include <string>
-#include "qdebug.h"
+#include <cmath>
+
 
 using std::string;
+
 
 typedef std::vector<Sphere> sphereList;
 typedef std::vector<Plane> planeList;
