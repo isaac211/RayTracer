@@ -20,6 +20,7 @@ using std::string;
 typedef std::vector<Sphere> sphereList;
 typedef std::vector<Plane> planeList;
 typedef std::vector<Light> lightList;
+typedef std::vector<std::vector<colorType>> canvasType;
 
 class Environment
 {
@@ -43,5 +44,7 @@ protected:
 	planeList planes;
 	lightList lights;
 	Camera camera;
+
+	canvasType canvas;
 };
 #endif
