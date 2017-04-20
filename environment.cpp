@@ -1,5 +1,6 @@
 #include "environment.hpp"
 
+
 Environment::Environment(sphereList s, planeList p, lightList l, Camera c)
 	: spheres(s), planes(p), lights(l), camera(c)
 {

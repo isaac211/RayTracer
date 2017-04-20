@@ -24,6 +24,32 @@ typedef std::vector<Plane> planeList;
 typedef std::vector<Light> lightList;
 typedef std::vector<std::vector<colorType>> canvasType;
 
+struct Vector
+{
+	coordsType x, y, z;
+	Vector(coordsType x, coordsType y, coordsType z) : x(x), y(y), z(z) {};
+
+	Vector operator+ (const Vector & vec) const 
+	{
+		return Vector(x + vec.x, y + vec.y, z+vec.z);
+	}
+
+	Vector operator- (const Vector & vec) const 
+	{
+		return Vector(x - vec.x, y - vec.y, z-vec.z);
+	}
+
+	Vector operator* (const coordsType m) const 
+	{
+		return Vector(x*m, y*m, z*m);
+	}
+
+	Vector operator/ (const coordsType d) const 
+	{
+		return Vector(x/d, y/d, z/d);
+	}
+};
+
 class Environment
 {
 public:
