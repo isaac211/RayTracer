@@ -3,6 +3,7 @@
 #include "camera.hpp"
 
 typedef float lambertType;
+typedef double radiusType;
 
 class Object
 {
@@ -11,7 +12,8 @@ public:
 	coords3D getCenter() const;
 	colorType getColor() const;
 	lambertType getLambert() const;
-
+	virtual radiusType getRadius() const;
+	virtual coords3D getNormal() const;
 protected:
 	coords3D center;
 	colorType color;

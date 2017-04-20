@@ -9,6 +9,7 @@ public:
 		lambertType lamb = 0,
 		coords3D norm = coords3D());
 
+
 	coords3D getNormal() const;
 
 private:

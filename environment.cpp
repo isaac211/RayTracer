@@ -78,7 +78,7 @@ void Environment::unpackJSON(const QString &path)
 
 		if (obj["type"].toString() == "sphere")
 		{
-			objects.push_back(Sphere(
+			objects.push_back(&Sphere(
 				coords3D(
 					centerObj["x"].toDouble(),
 					centerObj["y"].toDouble(),
@@ -95,7 +95,7 @@ void Environment::unpackJSON(const QString &path)
 		else if (obj["type"].toString() == "plane")
 		{
 			auto normalObj = obj["normal"].toObject();
-			objects.push_back(Plane(
+			objects.push_back(&Plane(
 				coords3D(
 					centerObj["x"].toDouble(),
 					centerObj["y"].toDouble(),

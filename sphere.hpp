@@ -1,8 +1,7 @@
 #ifndef _SPHERE_HPP_
 #define _SPHERE_HPP_
 #include "object.hpp"
-
-typedef double radiusType;
+#include <stdexcept>
 
 class Sphere : public Object
 {

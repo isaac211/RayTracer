@@ -15,3 +15,13 @@ lambertType Object::getLambert() const
 {
 	return lambert;
 }
+
+radiusType Object::getRadius() const
+{
+	return radiusType();
+}
+
+coords3D Object::getNormal() const
+{
+	return coords3D();
+}

@@ -15,3 +15,4 @@ radiusType Sphere::getRadius() const
 {
 	return radius;
 }
+
