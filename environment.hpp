@@ -41,6 +41,12 @@ public:
 	lightList getLights() const;
 	Camera getCamera() const;
 
+	bool isEmpty() const;
+	bool hasLights() const;
+	bool hasObjects() const;
+	bool hasSpheres() const;
+	bool hasPlanes() const;
+
 protected:
 	sphereList spheres;
 	planeList planes;

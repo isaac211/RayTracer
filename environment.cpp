@@ -157,3 +157,28 @@ Camera Environment::getCamera() const
 {
 	return camera;
 }
+
+bool Environment::isEmpty() const
+{
+	return (!hasLights() && !hasObjects());
+}
+
+bool Environment::hasObjects() const
+{
+	return (hasSpheres() && hasPlanes());
+}
+
+bool Environment::hasSpheres() const
+{
+	return !spheres.empty();
+}
+
+bool Environment::hasPlanes() const
+{
+	return !planes.empty();
+}
+
+bool Environment::hasLights() const
+{
+	return lights.empty();
+}
