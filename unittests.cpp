@@ -79,14 +79,32 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 
 		SECTION("objects")
 		{
-			REQUIRE(A.getSpheres()[0].getCenter().x == 0);
-			REQUIRE(A.getSpheres()[0].getCenter().y == 0);
-			REQUIRE(A.getSpheres()[0].getCenter().z == 5);
-			REQUIRE(A.getSpheres()[0].getColor().b == 0);
-			REQUIRE(A.getSpheres()[0].getColor().g == 0);
-			REQUIRE(A.getSpheres()[0].getColor().r == 255);
-			REQUIRE(A.getSpheres()[0].getLambert() == 1);
-			REQUIRE(A.getSpheres()[0].getRadius() == 1);
+			SECTION("Sphere 1")
+			{
+				REQUIRE(A.getSpheres()[0].getCenter().x == 0);
+				REQUIRE(A.getSpheres()[0].getCenter().y == 0);
+				REQUIRE(A.getSpheres()[0].getCenter().z == 5);
+				REQUIRE(A.getSpheres()[0].getColor().b == 0);
+				REQUIRE(A.getSpheres()[0].getColor().g == 0);
+				REQUIRE(A.getSpheres()[0].getColor().r == 255);
+				REQUIRE(A.getSpheres()[0].getLambert() == 1);
+				REQUIRE(A.getSpheres()[0].getRadius() == 1);
+			}
+
+			SECTION("Plane 1")
+			{
+				REQUIRE(A.getPlanes()[0].getCenter().x == 0);
+				REQUIRE(A.getPlanes()[0].getCenter().y == 5);
+				REQUIRE(A.getPlanes()[0].getCenter().z == 0);
+				REQUIRE(A.getPlanes()[0].getColor().b == 255);
+				REQUIRE(A.getPlanes()[0].getColor().g == 255);
+				REQUIRE(A.getPlanes()[0].getColor().r == 255);
+				REQUIRE(A.getPlanes()[0].getLambert() == 1);
+				REQUIRE(A.getPlanes()[0].getNormal().x == 0);
+				REQUIRE(A.getPlanes()[0].getNormal().y == -1);
+				REQUIRE(A.getPlanes()[0].getNormal().z == 0);
+
+			}
 		}
 	}
 }
