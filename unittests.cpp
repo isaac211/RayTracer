@@ -37,13 +37,13 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 
 		SECTION("objects")
 		{
-			REQUIRE(A.getObjects()[0].getCenter().x == 0);
-			REQUIRE(A.getObjects()[0].getCenter().y == 0);
-			REQUIRE(A.getObjects()[0].getCenter().z == 5);
-			REQUIRE(A.getObjects()[0].getColor().b == 0);
-			REQUIRE(A.getObjects()[0].getColor().g == 0);
-			REQUIRE(A.getObjects()[0].getColor().r == 255);
-			REQUIRE(A.getObjects()[0].getLambert() == 1);
+			REQUIRE(A.getSpheres()[0].getCenter().x == 0);
+			REQUIRE(A.getSpheres()[0].getCenter().y == 0);
+			REQUIRE(A.getSpheres()[0].getCenter().z == 5);
+			REQUIRE(A.getSpheres()[0].getColor().b == 0);
+			REQUIRE(A.getSpheres()[0].getColor().g == 0);
+			REQUIRE(A.getSpheres()[0].getColor().r == 255);
+			REQUIRE(A.getSpheres()[0].getLambert() == 1);
 		}
 	}
 
@@ -78,13 +78,13 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 
 		SECTION("objects")
 		{
-			REQUIRE(A.getObjects()[0].getCenter().x == 0);
-			REQUIRE(A.getObjects()[0].getCenter().y == 0);
-			REQUIRE(A.getObjects()[0].getCenter().z == 5);
-			REQUIRE(A.getObjects()[0].getColor().b == 0);
-			REQUIRE(A.getObjects()[0].getColor().g == 0);
-			REQUIRE(A.getObjects()[0].getColor().r == 255);
-			REQUIRE(A.getObjects()[0].getLambert() == 1);
+			REQUIRE(A.getSpheres()[0].getCenter().x == 0);
+			REQUIRE(A.getSpheres()[0].getCenter().y == 0);
+			REQUIRE(A.getSpheres()[0].getCenter().z == 5);
+			REQUIRE(A.getSpheres()[0].getColor().b == 0);
+			REQUIRE(A.getSpheres()[0].getColor().g == 0);
+			REQUIRE(A.getSpheres()[0].getColor().r == 255);
+			REQUIRE(A.getSpheres()[0].getLambert() == 1);
 		}
 	}
 }

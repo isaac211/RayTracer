@@ -1,7 +1,7 @@
 #include "environment.hpp"
 
-Environment::Environment(objectList o, lightList l, Camera c)
-	: objects(o), lights(l), camera(c)
+Environment::Environment(sphereList s, planeList p, lightList l, Camera c)
+	: spheres(s), planes(p), lights(l), camera(c)
 {
 }
 
@@ -78,7 +78,7 @@ void Environment::unpackJSON(const QString &path)
 
 		if (obj["type"].toString() == "sphere")
 		{
-			objects.push_back(Sphere(
+			spheres.push_back(Sphere(
 				coords3D(
 					centerObj["x"].toDouble(),
 					centerObj["y"].toDouble(),
@@ -95,7 +95,7 @@ void Environment::unpackJSON(const QString &path)
 		else if (obj["type"].toString() == "plane")
 		{
 			auto normalObj = obj["normal"].toObject();
-			objects.push_back(Plane(
+			planes.push_back(Plane(
 				coords3D(
 					centerObj["x"].toDouble(),
 					centerObj["y"].toDouble(),
@@ -138,17 +138,22 @@ void Environment::printImage(const char* path)
 	printImage(QString(path));
 }
 
-	objectList Environment::getObjects() const
+sphereList Environment::getSpheres() const
 {
-	return objects;
+	return spheres;
 }
 
-	lightList Environment::getLights() const
+planeList Environment::getPlanes() const
+{
+	return planes;
+}
+
+lightList Environment::getLights() const
 {
 	return lights;
 }
 
-	Camera Environment::getCamera() const
+Camera Environment::getCamera() const
 {
 	return camera;
 }
