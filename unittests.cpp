@@ -108,6 +108,18 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 		}
 	}
 
+	SECTION("scene 2")
+	{
+		Environment A;
+		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene2.json")); //double check
+	}
+
+	SECTION("scene 3")
+	{
+		Environment A;
+		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene3.json")); // Double check
+	}
+
 	SECTION("scene 4")
 	{
 		Environment A;
