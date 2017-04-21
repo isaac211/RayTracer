@@ -25,6 +25,8 @@ set(src
   plane.hpp
   environment.cpp
   environment.hpp
+  ray_tracer.cpp
+  ray_tracer.hpp
   )
 
 # EDIT: add any additional test source files to this list
