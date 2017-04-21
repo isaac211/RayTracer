@@ -13,6 +13,25 @@ struct coords3D
 {
 	coords3D(coordsType xin = 0., coordsType yin = 0., coordsType zin = 0.) : x(xin), y(yin), z(zin) {}
 	coordsType x, y, z;
+	coords3D operator+ (const coords3D & vec) const 
+	{
+		return coords3D(x + vec.x, y + vec.y, z+vec.z);
+	}
+
+	coords3D operator- (const coords3D & vec) const 
+	{
+		return coords3D(x - vec.x, y - vec.y, z-vec.z);
+	}
+
+	coords3D operator* (const coordsType m) const 
+	{
+		return coords3D(x*m, y*m, z*m);
+	}
+
+	coords3D operator/ (const coordsType d) const 
+	{
+		return coords3D(x/d, y/d, z/d);
+	}
 };
 
 struct colorType
