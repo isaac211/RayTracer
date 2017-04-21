@@ -22,7 +22,6 @@ using std::string;
 typedef std::vector<Sphere> sphereList;
 typedef std::vector<Plane> planeList;
 typedef std::vector<Light> lightList;
-typedef std::vector<std::vector<colorType>> canvasType;
 
 class Environment
 {
@@ -32,9 +31,6 @@ public:
 	void unpackJSON(const string &path);
 	void unpackJSON(const char* path);
 
-	void printImage(const QString &path);
-	void printImage(const string &path);
-	void printImage(const char* path);
 
 	planeList getPlanes() const;
 	sphereList getSpheres() const;
@@ -53,6 +49,5 @@ protected:
 	lightList lights;
 	Camera camera;
 
-	canvasType canvas;
 };
 #endif
