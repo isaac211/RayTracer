@@ -37,9 +37,9 @@ void RayTracer::printImage(const QString &path)
 				}
 			}
 	}
+
 	//Save image to a file.
-	QFile output(path);
-	pixmap.save(output.fileName(), "PNG");
+	pixmap.save(path, "PNG");
 }
 
 void RayTracer::printImage(const string &path)
