@@ -11,13 +11,17 @@ void RayTracer::printImage(const QString &path)
 	const sizeType imageY = scene.getCamera().getSize().second;
 	QImage pixmap(imageX, imageY, QImage::Format_ARGB32);
 
-	//Iterate through each pixel; set color to sphere if intersection occurs
-	for (sizeType i = 0; i < imageX; ++i)
-		for (sizeType j = 0; j < imageY; ++j)
-		{
-			;
-		}
+	sphereList spheres = scene.getSpheres();
+	planeList planes = scene.getPlanes();
 
+	//Iterate through each pixel; set color to sphere if intersection occurs
+	foreach(Sphere s, spheres)
+	{
+		for (sizeType i = 0; i < imageX; ++i)
+			for (sizeType j = 0; j < imageY; ++j)
+			{
+			}
+	}
 	//Save image to a file.
 	QFile output(path);
 	pixmap.save(output.fileName(), "PNG");
