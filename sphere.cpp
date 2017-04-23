@@ -33,13 +33,12 @@ bool Sphere::intersect(const rayType &ray, coordsType &t) const
 	if (dist2c < 1e-5)
 		return false;
 
-	//Choose between two possible quadratic answers for surface intersection
+	//Choose between two possible quadratic answers for surface intersection and return it
 	dist2c = std::sqrt(dist2c);
 	const coordsType t0 = -b - dist2c;
 	const coordsType t1 = -b + dist2c;
-
-	//return surface intersection
 	t = (t0 < t1) ? t0 : t1;
+
 	return true;
 }
 
