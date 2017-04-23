@@ -2,6 +2,7 @@
 #define _CAMERA_HPP_
 #include <cstdint>
 #include <utility>
+#include <cmath>
 using std::make_pair;
 typedef std::size_t sizeType;
 typedef std::pair<sizeType,sizeType> sizingType;
@@ -32,6 +33,12 @@ struct coords3D
 	coords3D operator/ (const coordsType d) const 
 	{
 		return coords3D(x/d, y/d, z/d);
+	}
+
+	coords3D getNormal() const
+	{
+		coordsType mg = std::sqrt(x*x + y*y + z*z);
+		return coords3D(x / mg, y / mg, z / mg);
 	}
 };
 
