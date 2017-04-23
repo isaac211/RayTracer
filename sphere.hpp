@@ -14,6 +14,7 @@ public:
 	radiusType getRadius() const;
 
 	bool intersect(const rayType &ray, coordsType &t) const;
+	coords3D getNormal(const coords3D &pi) const;
 private:
 	radiusType radius;
 };

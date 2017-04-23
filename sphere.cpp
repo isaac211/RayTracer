@@ -42,3 +42,7 @@ bool Sphere::intersect(const rayType &ray, coordsType &t) const
 	return true;
 }
 
+coords3D Sphere::getNormal(const coords3D &pi) const
+{
+	return (pi - center) / radius;
+}
