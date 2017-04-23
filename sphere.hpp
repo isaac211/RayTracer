@@ -12,6 +12,8 @@ public:
 		radiusType rad = 0.);
 
 	radiusType getRadius() const;
+
+	bool intersect(const rayType &ray, coordsType &t) const;
 private:
 	radiusType radius;
 };
