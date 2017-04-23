@@ -1,4 +1,6 @@
 #include "environment.hpp"
+#include "qimage.h"
+#include <cmath>
 
 struct rayType
 {

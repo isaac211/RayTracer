@@ -3,7 +3,8 @@
 #include <cstdint>
 #include <utility>
 using std::make_pair;
-typedef std::pair<std::size_t,std::size_t> sizingType;
+typedef std::size_t sizeType;
+typedef std::pair<sizeType,sizeType> sizingType;
 typedef std::pair<double, double> resolutionType;
 typedef unsigned int focusType;
 typedef std::uint8_t rgbType;
