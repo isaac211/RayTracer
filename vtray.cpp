@@ -1,7 +1,8 @@
 #include <iostream>
 #include <cctype>
 #include <string>
-#include "environment.hpp"
+#include "ray_tracer.hpp"
+
 using std::cerr;
 using std::isdigit;
 using std::string;
@@ -43,9 +44,10 @@ int main(int argc, char *argv[])
 
 	try
 	{
-		Environment run;
-		run.unpackJSON(jsonFile);
-		//TODO call other functions
+		Environment scene;
+		scene.unpackJSON(jsonFile);
+		RayTracer run(scene);
+		run.printImage(pngFile);
 	}
 	catch (std::exception& error)
 	{
