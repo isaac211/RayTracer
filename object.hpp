@@ -5,6 +5,17 @@
 typedef float lambertType;
 typedef double radiusType;
 
+struct rayType
+{
+	coords3D origin, destination;
+	rayType(coords3D o, coords3D d) : origin(o), destination(o) {}
+};
+
+inline coordsType dotp(const coords3D &a, const coords3D &b)
+{
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
+
 class Object
 {
 public:
