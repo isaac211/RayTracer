@@ -16,25 +16,29 @@ void RayTracer::printImage(const QString &path)
 	lightList lights = scene.getLights();
 
 	//Iterate through each pixel; set color to sphere if intersection occurs
-	coordsType t;
+	coordsType t = 0;
 
 	//single light for test
 	Light light = lights[0];
 
+	const QRgb black = qRgb(0, 0, 0);
+
 	foreach(Sphere s, spheres)
 	{
-		QColor color(
-			s.getColor().r,
+		QRgb color = qRgb(s.getColor().r,
 			s.getColor().g,
 			s.getColor().b);
+
 		for (sizeType i = 0; i < imageX; ++i)
 			for (sizeType j = 0; j < imageY; ++j)
 			{
-				const rayType ray(coords3D(i,j,0), s.getCenter());
+				const rayType ray(coords3D(i,j,0), scene.getCamera().getFocus());
 				if (s.intersect(ray, t))
 				{
-					pixmap.setPixel(i, j, color.rgb());
+					pixmap.setPixel(i, j, color);
 				}
+				else
+					pixmap.setPixel(i, j, black);
 			}
 	}
 
