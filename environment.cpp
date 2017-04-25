@@ -48,11 +48,15 @@ void Environment::unpackJSON(const QString &path)
 		)
 		throw std::runtime_error("Error: Missing camera location coordinates!");
 
-	if (sizeObj[0].isUndefined() || sizeObj[1].isUndefined())
-		throw std::runtime_error("Error: Missing camera size!");
+	//Missing or negative size
+	if (sizeObj[0].isUndefined() || sizeObj[1].isUndefined()
+		|| sizeObj[0].toInt() < 0 || sizeObj[1].toInt() < 0)
+		throw std::runtime_error("Error: Invalid camera size!");
 
-	if (resolObj[0].isUndefined() || resolObj[1].isUndefined())
-		throw std::runtime_error("Error: Missing camera resolution!");
+	//Missing or negative resolution
+	if (resolObj[0].isUndefined() || resolObj[1].isUndefined()
+		|| resolObj[0].toDouble() < 0 || resolObj[0].toDouble() < 0)
+		throw std::runtime_error("Error: Invalid camera resolution!");
 
 	if (normalObj["x"].isUndefined()
 		|| normalObj["y"].isUndefined()
@@ -102,9 +106,10 @@ void Environment::unpackJSON(const QString &path)
 			|| locObj["z"].isUndefined())
 			throw std::runtime_error("Error: Missing light location values!");
 
-		//throw if no intensity
-		if (lightObj["intensity"].isUndefined())
-			throw std::runtime_error("Error: Missing light intensity!");
+		//throw if missing or negative intensity
+		if (lightObj["intensity"].isUndefined()
+			|| lightObj["intensity"].toDouble() < 0)
+			throw std::runtime_error("Error: Invalid light intensity!");
 
 		lights.push_back(
 			Light(
@@ -122,14 +127,17 @@ void Environment::unpackJSON(const QString &path)
 	{
 		auto obj = value.toObject();
 
-		//throw if no center, color, or type
+		//throw if missing or invalid center, color, or type
 		if (obj["center"].isUndefined()
 			|| obj["color"].isUndefined()
 			|| obj["type"].isUndefined()
 			|| obj["lambert"].isUndefined()
+			|| obj["lambert"].toDouble() < 0.
+			|| obj["lambert"].toDouble() > 1.
+			|| !obj["lambert"].isDouble()
 			)
 			throw std::runtime_error(
-				"Error: check object has center, color, lambert, and type!");
+				"Error: Check object has center, color, lambert, and type!");
 
 		auto centerObj = obj["center"].toObject();
 		auto colorObj = obj["color"].toObject();
@@ -148,10 +156,11 @@ void Environment::unpackJSON(const QString &path)
 
 		if (obj["type"].toString() == "sphere")
 		{
-			//throw if no radius
-			if (obj["sphere"].isUndefined())
-				throw std::runtime_error("Error: Missing sphere radius!");
-
+			//throw if missing or negative radius
+			if (obj["radius"].isUndefined()
+				|| obj["radius"].toDouble() < 0)
+				throw std::runtime_error("Error: Invalid sphere radius!");
+			
 			spheres.push_back(Sphere(
 				coords3D(
 					centerObj["x"].toDouble(),
