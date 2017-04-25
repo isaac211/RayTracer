@@ -9,7 +9,7 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 	SECTION("scene 0")
 	{
 		Environment A;
-		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene0.json"));
+		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene0.json"));
 
 		SECTION("camera")
 		{
@@ -51,7 +51,7 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 	SECTION("scene 1")
 	{
 		Environment A;
-		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene1.json"));
+		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene1.json"));
 
 		SECTION("camera")
 		{
@@ -111,18 +111,18 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 	SECTION("scene 2")
 	{
 		Environment A;
-		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene2.json"));
+		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene2.json"));
 	}
 
 	SECTION("scene 3")
 	{
 		Environment A;
-		REQUIRE_THROWS(A.unpackJSON("../tests/scene3.json"));
+		REQUIRE_THROWS(A.unpackJSON("/vagrant/tests/scene3.json"));
 	}
 
 	SECTION("scene 4")
 	{
 		Environment A;
-		REQUIRE_THROWS(A.unpackJSON("../tests/scene4.json"));
+		REQUIRE_THROWS(A.unpackJSON("/vagrant/tests/scene4.json"));
 	}
 }
