@@ -29,10 +29,12 @@ void RayTracer::printImage(const QString &path)
 			s.getColor().g,
 			s.getColor().b);
 
+		focusType focus(scene.getCamera().getFocus());
+
 		for (sizeType i = 0; i < imageX; ++i)
 			for (sizeType j = 0; j < imageY; ++j)
 			{
-				const rayType ray(coords3D(i,j,0), scene.getCamera().getFocus());
+				const rayType ray(coords3D(i,j,0), focus);
 				if (s.intersect(ray, t))
 				{
 					pixmap.setPixel(i, j, color);
