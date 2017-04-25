@@ -3,7 +3,6 @@
 #include <cmath>
 
 
-typedef std::vector<std::vector<colorType>> canvasType;
 class RayTracer
 {
 public:
@@ -14,6 +13,5 @@ public:
 
 private:
 	Environment scene;
-	canvasType canvas;
 
 };
