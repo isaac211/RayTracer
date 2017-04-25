@@ -2,7 +2,7 @@
 #define CATCH_CONFIG_COLOUR_NONE
 #include "catch.hpp"
 
-#include "environment.hpp"
+#include "ray_tracer.hpp"
 
 TEST_CASE("Test JSON Parser", "[JSON]")
 {
