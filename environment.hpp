@@ -49,5 +49,19 @@ protected:
 	lightList lights;
 	Camera camera;
 
+	inline bool notInt(const QString &a)
+	{
+		foreach(QChar x, a)
+			if (x < '0' || x > '9') return true;
+		return false;
+	}
+
+	inline bool notDouble(const QString &a)
+	{
+		foreach(QChar x, a)
+			if (x < '0' || x > '9') 
+				if (x != '.') return true;
+		return false;
+	}
 };
 #endif
