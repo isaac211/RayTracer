@@ -1,5 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_COLOUR_NONE
+#define RELATIVE 1
 #include "catch.hpp"
 
 #include "ray_tracer.hpp"
@@ -9,7 +10,11 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 	SECTION("scene 0")
 	{
 		Environment A;
+#if RELATIVE == 0
 		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene0.json"));
+#else
+		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene0.json"));
+#endif
 
 		SECTION("camera")
 		{
@@ -51,8 +56,11 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 	SECTION("scene 1")
 	{
 		Environment A;
+#if RELATIVE == 0
 		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene1.json"));
-
+#else
+		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene1.json"));
+#endif
 		SECTION("camera")
 		{
 			REQUIRE(A.getCamera().getCenter().x == 0);
@@ -111,18 +119,30 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 	SECTION("scene 2")
 	{
 		Environment A;
+#if RELATIVE == 0
 		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene2.json"));
+#else
+		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene2.json"));
+#endif
 	}
 
 	SECTION("scene 3")
 	{
 		Environment A;
+#if RELATIVE == 0
 		REQUIRE_THROWS(A.unpackJSON("/vagrant/tests/scene3.json"));
+#else
+		REQUIRE_THROWS(A.unpackJSON("../tests/scene3.json"));
+#endif
 	}
 
 	SECTION("scene 4")
 	{
 		Environment A;
+#if RELATIVE == 0
 		REQUIRE_THROWS(A.unpackJSON("/vagrant/tests/scene4.json"));
+#else
+		REQUIRE_THROWS(A.unpackJSON("../tests/scene4.json"));
+#endif
 	}
 }
