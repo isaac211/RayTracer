@@ -15,26 +15,31 @@ void RayTracer::printImage(const QString &path)
 	planeList planes = scene.getPlanes();
 	lightList lights = scene.getLights();
 
-	//Iterate through each pixel; set color to sphere if intersection occurs
-	coordsType t = 0;
 
 	//single light for test
 	Light light = lights[0];
+	focusType focus(scene.getCamera().getFocus());
 
-	const QRgb black = qRgb(0, 0, 0);
+	const QRgb black = qRgb(0, 0, 0); //default background color
+	const QRgb white = qRgb(255, 255, 255); // for use in shading
 
 	foreach(Sphere s, spheres)
 	{
-		QRgb color = qRgb(s.getColor().r,
-			s.getColor().g,
-			s.getColor().b);
+		QRgb color = qRgb(
+			autoExpose(s.getColor().r),
+			autoExpose(s.getColor().g),
+			autoExpose(s.getColor().b)
+			);
 
-		focusType focus(scene.getCamera().getFocus());
 
 		for (sizeType i = 0; i < imageX; ++i)
 			for (sizeType j = 0; j < imageY; ++j)
 			{
 				const rayType ray(coords3D(i,j,0), focus);
+
+				//Iterate through each pixel; set color to sphere if intersection occurs
+				coordsType t = 0;
+
 				if (s.intersect(ray, t))
 				{
 					pixmap.setPixel(i, j, color);
