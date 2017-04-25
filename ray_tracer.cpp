@@ -18,6 +18,8 @@ void RayTracer::printImage(const QString &path)
 
 	//single light for test
 	Light light = lights[0];
+
+	coords3D camera(scene.getCamera().getCenter());
 	focusType focus(scene.getCamera().getFocus());
 
 	const QRgb black = qRgb(0, 0, 0); //default background color
@@ -35,7 +37,7 @@ void RayTracer::printImage(const QString &path)
 		for (sizeType i = 0; i < imageX; ++i)
 			for (sizeType j = 0; j < imageY; ++j)
 			{
-				const rayType ray(coords3D(i,j,0), focus);
+				const rayType ray(camera + coords3D(i,j,0), focus);
 
 				//Iterate through each pixel; set color to sphere if intersection occurs
 				coordsType t = 0;
