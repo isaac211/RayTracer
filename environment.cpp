@@ -95,7 +95,7 @@ void Environment::unpackJSON(const QString &path)
 
 		//throw if no location
 		if (lightObj["location"].isUndefined())
-			throw std::exception("Error: No light location!");
+			throw std::runtime_error("Error: Missing light location!");
 
 		//store location
 		auto locObj = lightObj["location"].toObject();
