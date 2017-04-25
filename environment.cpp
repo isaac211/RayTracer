@@ -1,6 +1,5 @@
 #include "environment.hpp"
 
-
 Environment::Environment(sphereList s, planeList p, lightList l, Camera c)
 	: spheres(s), planes(p), lights(l), camera(c)
 {
@@ -21,9 +20,19 @@ void Environment::unpackJSON(const QString &path)
 
 	//Store camera, lights, and objects in convenient data types
 	QJsonObject rootObject = jsonDoc.object();
+	if (rootObject["camera"].isUndefined()) //throw if no camera
+		throw std::runtime_error("Error: Missing camera!");
 	QJsonObject camObj = rootObject["camera"].toObject();
 	QJsonArray lightArray = rootObject["lights"].toArray();
 	QJsonArray objArray = rootObject["objects"].toArray();
+
+	//camera error checking
+	if (camObj["center"].isUndefined()
+		|| camObj["size"].isUndefined()
+		|| camObj["resolution"].isUndefined()
+		|| camObj["normal"].isUndefined()
+		)
+		throw std::runtime_error("Error: Missing camera values!");
 
 	//camera parsing
 	auto centerObj = camObj["center"].toObject();
@@ -31,6 +40,30 @@ void Environment::unpackJSON(const QString &path)
 	auto resolObj = camObj["resolution"].toArray();
 	auto normalObj = camObj["normal"].toObject();
 
+	//camera sub value error checking
+	if (
+		centerObj["x"].isUndefined()
+		|| centerObj["y"].isUndefined()
+		|| centerObj["z"].isUndefined()
+		)
+		throw std::runtime_error("Error: Missing camera location coordinates!");
+
+	if (sizeObj[0].isUndefined() || sizeObj[1].isUndefined())
+		throw std::runtime_error("Error: Missing camera size!");
+
+	if (resolObj[0].isUndefined() || resolObj[1].isUndefined())
+		throw std::runtime_error("Error: Missing camera resolution!");
+
+	if (normalObj["x"].isUndefined()
+		|| normalObj["y"].isUndefined()
+		|| normalObj["z"].isUndefined()
+		)
+		throw std::runtime_error("Error: Missing camera normal values!");
+
+	if (camObj["focus"].isUndefined())
+		throw std::runtime_error("Error: Missing camera focus!");
+
+	//parsing for camera sub values
 	coords3D center(
 		centerObj["x"].toDouble(), centerObj["y"].toDouble(), centerObj["z"].toDouble()
 		);
@@ -56,7 +89,22 @@ void Environment::unpackJSON(const QString &path)
 	{
 		auto lightObj = value.toObject();
 
+		//throw if no location
+		if (lightObj["location"].isUndefined())
+			throw std::exception("Error: No light location!");
+
+		//store location
 		auto locObj = lightObj["location"].toObject();
+
+		//throw if no location coordinates
+		if (locObj["x"].isUndefined()
+			|| locObj["y"].isUndefined()
+			|| locObj["z"].isUndefined())
+			throw std::runtime_error("Error: Missing light location values!");
+
+		//throw if no intensity
+		if (lightObj["intensity"].isUndefined())
+			throw std::runtime_error("Error: Missing light intensity!");
 
 		lights.push_back(
 			Light(
@@ -74,11 +122,36 @@ void Environment::unpackJSON(const QString &path)
 	{
 		auto obj = value.toObject();
 
+		//throw if no center, color, or type
+		if (obj["center"].isUndefined()
+			|| obj["color"].isUndefined()
+			|| obj["type"].isUndefined()
+			|| obj["lambert"].isUndefined()
+			)
+			throw std::runtime_error(
+				"Error: check object has center, color, lambert, and type!");
+
 		auto centerObj = obj["center"].toObject();
 		auto colorObj = obj["color"].toObject();
 
+		//throw if center and color do not have values
+		if (centerObj["x"].isUndefined()
+			|| centerObj["y"].isUndefined()
+			|| centerObj["z"].isUndefined())
+			throw std::runtime_error("Error: Missing object center (XYZ)!");
+
+		if (colorObj["r"].isUndefined()
+			|| centerObj["g"].isUndefined()
+			|| centerObj["b"].isUndefined()
+			)
+			throw std::runtime_error("Error: Missing object colors (RGB)!");
+
 		if (obj["type"].toString() == "sphere")
 		{
+			//throw if no radius
+			if (obj["sphere"].isUndefined())
+				throw std::runtime_error("Error: Missing sphere radius!");
+
 			spheres.push_back(Sphere(
 				coords3D(
 					centerObj["x"].toDouble(),
@@ -95,7 +168,18 @@ void Environment::unpackJSON(const QString &path)
 
 		else if (obj["type"].toString() == "plane")
 		{
+			//throw if no normal
+			if (obj["normal"].isUndefined())
+				throw std::runtime_error("Error: Missing plane normal!");
+
 			auto normalObj = obj["normal"].toObject();
+
+			//throw if no normal coordinates
+			if (normalObj["x"].isUndefined()
+				|| normalObj["y"].isUndefined()
+				|| normalObj["z"].isUndefined())
+				throw std::runtime_error("Error: Missing plane normal (XYZ)!");
+
 			planes.push_back(Plane(
 				coords3D(
 					centerObj["x"].toDouble(),
