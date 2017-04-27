@@ -52,7 +52,7 @@ protected:
 	inline bool notInt(const QString &a)
 	{
 		foreach(QChar x, a)
-			if (x < '0' || x > '9') 
+			if (!x.isDigit()) 
 				if (x != '-') return true;
 		return false;
 	}
@@ -60,7 +60,7 @@ protected:
 	inline bool notDouble(const QString &a)
 	{
 		foreach(QChar x, a)
-			if (x < '0' || x > '9') 
+			if (!x.isDigit()) 
 				if (x != '.' && x != '-') return true;
 		return false;
 	}
