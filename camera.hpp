@@ -4,17 +4,17 @@
 #include <utility>
 #include <cmath>
 using std::make_pair;
-typedef std::size_t sizeType;
+typedef long int sizeType;
 typedef std::pair<sizeType,sizeType> sizingType;
 typedef std::pair<double, double> resolutionType;
-typedef unsigned int focusType;
+typedef int focusType;
 typedef int rgbType;
 typedef double coordsType;
 
 struct coords3D
 {
-	coords3D(coordsType xin = 0., coordsType yin = 0., coordsType zin = 0.) : x(xin), y(yin), z(zin) {}
 	coordsType x, y, z;
+	coords3D(coordsType xin = 0, coordsType yin = 0, coordsType zin = 0) : x(xin), y(yin), z(zin) {}
 	coords3D operator+ (const coords3D & vec) const 
 	{
 		return coords3D(x + vec.x, y + vec.y, z+vec.z);

@@ -52,7 +52,8 @@ protected:
 	inline bool notInt(const QString &a)
 	{
 		foreach(QChar x, a)
-			if (x < '0' || x > '9') return true;
+			if (x < '0' || x > '9') 
+				if (x != '-') return true;
 		return false;
 	}
 
@@ -60,7 +61,7 @@ protected:
 	{
 		foreach(QChar x, a)
 			if (x < '0' || x > '9') 
-				if (x != '.') return true;
+				if (x != '.' && x != '-') return true;
 		return false;
 	}
 };
