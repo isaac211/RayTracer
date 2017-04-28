@@ -64,5 +64,10 @@ protected:
 				if (x != '.' && x != '-') return true;
 		return false;
 	}
+
+	inline bool notColor(const int &a)
+	{
+		return (a < 0 || a > 255);
+	}
 };
 #endif

@@ -164,8 +164,11 @@ void Environment::unpackJSON(const QString &path)
 			|| notInt(colorObj["r"].toString())
 			|| notInt(colorObj["g"].toString())
 			|| notInt(colorObj["b"].toString())
+			|| notColor(colorObj["r"].toInt())
+			|| notColor(colorObj["g"].toInt())
+			|| notColor(colorObj["b"].toInt())
 			)
-			throw std::runtime_error("Error: Missing object colors (RGB)!");
+			throw std::runtime_error("Error: Missing/Invalid object colors!");
 
 		if (obj["type"].toString() == "sphere")
 		{
