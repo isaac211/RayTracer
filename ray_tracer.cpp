@@ -28,9 +28,9 @@ void RayTracer::printImage(const QString &path)
 	foreach(Sphere s, spheres)
 	{
 		QRgb color = qRgb(
-			autoExpose(s.getColor().r),
-			autoExpose(s.getColor().g),
-			autoExpose(s.getColor().b)
+			rgbLock(s.getColor().r),
+			rgbLock(s.getColor().g),
+			rgbLock(s.getColor().b)
 			);
 
 

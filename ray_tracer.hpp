@@ -2,7 +2,7 @@
 #include "qimage.h"
 #include <cmath>
 
-inline rgbType autoExpose(const rgbType &color)
+inline rgbType rgbLock(const rgbType &color)
 {
 	return (color > 255) ? 255 : (color < 0) ? 0 : color;
 }
