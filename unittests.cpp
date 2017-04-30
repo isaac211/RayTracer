@@ -149,6 +149,32 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 
 TEST_CASE("Test Math", "[OBJECT][RAY_TRACER]")
 {
+	SECTION("Vector arithmetic")
+	{
+		SECTION("Zeroes")
+		{
+			const coords3D A(0, 0, 0);
+			const coords3D B(0, 0, 0);
+			const coordsType constant(42);
+
+			REQUIRE(A + B == coords3D(0, 0, 0));
+			REQUIRE(A - B == coords3D(0, 0, 0));
+			REQUIRE(A * constant == coords3D(0, 0, 0));
+			REQUIRE(A / constant == coords3D(0, 0, 0));
+		}
+		SECTION("A = 3 3 3, B =  5 7 1, constant = 2")
+		{
+			const coords3D A(3, 3, 3);
+			const coords3D B(5, 7, 1);
+			const coordsType constant = 2;
+
+			REQUIRE(A + B == coords3D(8, 10, 4));
+			REQUIRE(A - B == coords3D(-2, -4, 2));
+			REQUIRE((A*constant) == coords3D(6, 6, 6));
+			REQUIRE((B*constant) == coords3D(10, 14, 2));
+			REQUIRE((A + B) / constant == coords3D(4, 5, 2));
+		}
+	}
 	SECTION("dot product")
 	{
 		SECTION("Zero vectors")

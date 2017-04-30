@@ -35,6 +35,11 @@ struct coords3D
 		return coords3D(x/d, y/d, z/d);
 	}
 
+	bool operator== ( const coords3D &b) const
+	{
+		return (this->x != b.x) ? false : (this->y != b.y) ? false : (this->z != b.z) ? false : true;
+	}
+
 	coords3D getNormal() const
 	{
 		coordsType mg = std::sqrt(x*x + y*y + z*z);
