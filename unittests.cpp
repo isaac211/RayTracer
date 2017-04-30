@@ -147,6 +147,36 @@ TEST_CASE("Test JSON Parser", "[JSON]")
 	}
 }
 
+TEST_CASE("Test Math", "[OBJECT][RAY_TRACER]")
+{
+	SECTION("dot product")
+	{
+		SECTION("Zero vectors")
+		{
+			const coords3D A(0, 0, 0);
+			const coords3D B(0, 0, 0);
+
+			REQUIRE(dotp(A, B) == 0);
+		}
+
+		SECTION("A = 1 3 4, B = 4 3 1, dot = 17")
+		{
+			const coords3D A(1, 3, 4);
+			const coords3D B(4, 3, 1);
+
+			REQUIRE(dotp(A, B) == 17);
+		}
+
+		SECTION("A = -2 -3 -5, B = 14 -4 -8, dot = 24")
+		{
+			const coords3D A(-2, -3, -5);
+			const coords3D B(14, -4, -8);
+
+			REQUIRE(dotp(A, B) == 24);
+		}
+	}
+}
+
 TEST_CASE("Test intersections","[SPHERE][PLANE]")
 {
 	SECTION("sphere")
