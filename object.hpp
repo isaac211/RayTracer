@@ -8,7 +8,7 @@ typedef double radiusType;
 struct rayType
 {
 	coords3D origin, destination;
-	rayType(coords3D o, coords3D d) : origin(o), destination(o) {}
+	rayType(coords3D o, coords3D d) : origin(o), destination(d) {}
 };
 
 inline coordsType dotp(const coords3D &a, const coords3D &b)
