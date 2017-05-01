@@ -201,6 +201,14 @@ TEST_CASE("Test Math", "[OBJECT][RAY_TRACER]")
 			REQUIRE(dotp(A, B) == 24);
 		}
 	}
+
+	SECTION("Normalize")
+	{
+		coordsType x(5), y(8), z(13);
+		const coordsType mg = std::sqrt(x*x + y*y + z*z);
+		REQUIRE(std::floor(mg) == 16);
+		REQUIRE(coords3D(x, y, z).getNormal() == coords3D(x / mg, y / mg, z / mg));
+	}
 }
 
 TEST_CASE("Test intersections","[SPHERE][PLANE]")
