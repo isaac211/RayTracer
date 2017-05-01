@@ -9,6 +9,8 @@ void RayTracer::printImage(const QString &path)
 	//Set width and height of a QImage pixel map
 	const sizeType imageX = scene.getCamera().getSize().first;
 	const sizeType imageY = scene.getCamera().getSize().second;
+	const auto resX = scene.getCamera().getResolution().first;
+	const auto resY = scene.getCamera().getResolution().second;
 	QImage pixmap(imageX, imageY, QImage::Format_ARGB32);
 
 	sphereList spheres = scene.getSpheres();
@@ -37,8 +39,8 @@ void RayTracer::printImage(const QString &path)
 		for (sizeType i = 0; i < imageX; ++i)
 			for (sizeType j = 0; j < imageY; ++j)
 			{
-				const coordsType pixelX = (i - imageX / 2);
-				const coordsType pixelY = (j - imageY / 2);
+				const coordsType pixelX = (i - (imageX / 2)); //TODO: Apply resolution
+				const coordsType pixelY = (j - (imageY / 2));
 				const rayType ray(camCenter + coords3D(pixelX,pixelY,0), coords3D(0,0,-focus));
 
 				//Iterate through each pixel; set color to sphere if intersection occurs
