@@ -37,7 +37,9 @@ void RayTracer::printImage(const QString &path)
 		for (sizeType i = 0; i < imageX; ++i)
 			for (sizeType j = 0; j < imageY; ++j)
 			{
-				const rayType ray(camCenter + coords3D(i,j,0), coords3D(0,0,focus));
+				const coordsType pixelX = (i - imageX / 2);
+				const coordsType pixelY = (j - imageY / 2);
+				const rayType ray(camCenter + coords3D(pixelX,pixelY,0), coords3D(0,0,-focus));
 
 				//Iterate through each pixel; set color to sphere if intersection occurs
 				coordsType t = 0;
