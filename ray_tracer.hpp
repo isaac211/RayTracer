@@ -1,6 +1,7 @@
 #include "environment.hpp"
 #include "qimage.h"
 #include <cmath>
+#include <queue>
 
 inline rgbType rgbLock(const rgbType &color)
 {
