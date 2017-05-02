@@ -35,8 +35,8 @@ void RayTracer::printImage(const QString &path)
 		auto const b = s.getColor().b;
 		auto const lambert = s.getLambert();
 
-			for (sizeType i = 0; i < imageX; ++i)
-				for (sizeType j = 0; j < imageY; ++j)
+			for (sizeType j = 0; j < imageX; ++j)
+				for (sizeType i = 0; i < imageY; ++i)
 				{
 					const coordsType pixelX = (i - (imageX / 2)); //TODO: Apply resolution
 					const coordsType pixelY = (j - (imageY / 2));
