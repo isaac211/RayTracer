@@ -35,7 +35,7 @@ void RayTracer::printImage(const QString &path)
 		auto const g = s.getColor().g;
 		auto const b = s.getColor().b;
 		auto const lambert = s.getLambert();
-		std::queue<coordsType> limitsQueue;
+		std::queue<coords3D> precolorsQueue;
 
 		coordsType highR(0), lowR(0), highG(0), lowG(0), highB(0), lowB(0);
 
@@ -61,6 +61,7 @@ void RayTracer::printImage(const QString &path)
 					scale = (scale < 0) ? 0 : scale;
 
 					coords3D precolor = (coords3D(r, g, b) *scale) * lightInt;
+					precolorsQueue.push(precolor);
 
 					lowR = (precolor.x < lowR) ? precolor.x : lowR;
 					highR = (precolor.x > highR) ? precolor.x : highR;
@@ -88,16 +89,9 @@ void RayTracer::printImage(const QString &path)
 
 				if (s.intersect(ray, t))
 				{
-					//Calculate point of intersection
-					const coords3D inter = ray.origin + ray.destination*t;
+					coords3D precolor = precolorsQueue.front();
+					precolorsQueue.pop();
 
-					//Color based on light reflection
-					const coords3D &lightRef = light.getLocation();
-					const coords3D &normalRef = s.getNormal(inter);
-					coordsType scale = lambert*dotp(lightRef.getNormal(), normalRef.getNormal());
-					scale = (scale < 0) ? 0 : scale;
-
-					coords3D precolor = coords3D(r, g, b) * scale * lightInt;
 					QRgb color = qRgb(precolor.x / balancedR * 255,
 						precolor.y / balancedG * 255,
 						precolor.z / balancedB * 255);
