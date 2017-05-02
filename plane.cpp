@@ -20,6 +20,6 @@ bool Plane::intersect(const rayType &ray, coordsType &t) const
 	if (discrim < 0)
 		return false;
 	coords3D originsinter = ray.origin.normalize() - center.normalize();
-	t = dotp(originsinter, normal.normalize());
+	t = dotp(originsinter.normalize(), normal.normalize());
 	return (t >= 0);
 }
