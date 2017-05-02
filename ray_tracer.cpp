@@ -66,6 +66,7 @@ void RayTracer::printImage(const QString &path)
 					coords3D precolor = (coords3D(r, g, b) *scale) * lightInt;
 					precolorsQueue.push(precolor);
 
+					//Find lowest and highest scaled values for auto exposure
 					lowR = (precolor.x < lowR) ? precolor.x : lowR;
 					highR = (precolor.x > highR) ? precolor.x : highR;
 					lowG = (precolor.x < lowG) ? precolor.x : lowG;
@@ -90,6 +91,7 @@ void RayTracer::printImage(const QString &path)
 					coords3D precolor = precolorsQueue.front();
 					precolorsQueue.pop();
 
+					//Auto exposure
 					QRgb color = qRgb(precolor.x / balancedR * 255,
 						precolor.y / balancedG * 255,
 						precolor.z / balancedB * 255);
