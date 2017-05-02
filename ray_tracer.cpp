@@ -36,6 +36,7 @@ void RayTracer::printImage(const QString &path)
 		auto const b = s.getColor().b;
 		auto const lambert = s.getLambert();
 		std::queue<coords3D> precolorsQueue;
+		std::queue<bool> intersectQueue;
 
 		coordsType highR(0), lowR(0), highG(0), lowG(0), highB(0), lowB(0);
 
@@ -51,6 +52,8 @@ void RayTracer::printImage(const QString &path)
 
 				if (s.intersect(ray, t))
 				{
+					intersectQueue.push(true);
+
 					//Calculate point of intersection
 					const coords3D inter = ray.origin + ray.destination*t;
 
@@ -71,6 +74,8 @@ void RayTracer::printImage(const QString &path)
 					highB = (precolor.x > highB) ? precolor.x : highB;
 
 				}
+				else
+					intersectQueue.push(false);
 			}
 
 		auto const balancedR = highR - lowR;
@@ -80,14 +85,7 @@ void RayTracer::printImage(const QString &path)
 		for (sizeType j = 0; j < imageY; ++j)
 			for (sizeType i = 0; i < imageX; ++i)
 			{
-				const coordsType pixelX = (i - (imageX / 2)); //TODO: Apply resolution
-				const coordsType pixelY = (j - (imageY / 2));
-				const rayType ray(camCenter + coords3D(pixelX, pixelY, 0), coords3D(0, 0, -focus));
-
-				//Iterate through each pixel; set color to sphere if intersection occurs
-				coordsType t = 0;
-
-				if (s.intersect(ray, t))
+				if (intersectQueue.front())
 				{
 					coords3D precolor = precolorsQueue.front();
 					precolorsQueue.pop();
@@ -100,6 +98,7 @@ void RayTracer::printImage(const QString &path)
 				}
 				else
 					pixmap.setPixel(i, j, black);
+				intersectQueue.pop();
 	}
 
 }
