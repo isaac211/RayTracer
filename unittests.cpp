@@ -207,7 +207,7 @@ TEST_CASE("Test Math", "[OBJECT][RAY_TRACER]")
 		coordsType x(5), y(8), z(13);
 		const coordsType mg = std::sqrt(x*x + y*y + z*z);
 		REQUIRE(std::floor(mg) == 16);
-		REQUIRE(coords3D(x, y, z).getNormal() == coords3D(x / mg, y / mg, z / mg));
+		REQUIRE(coords3D(x, y, z).normalize() == coords3D(x / mg, y / mg, z / mg));
 	}
 }
 

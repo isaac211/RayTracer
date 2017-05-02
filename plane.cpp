@@ -16,10 +16,10 @@ coords3D Plane::getNormal() const
 
 bool Plane::intersect(const rayType &ray, coordsType &t) const
 {
-	coordsType discrim = dotp(normal.getNormal(), ray.destination.getNormal());
+	coordsType discrim = dotp(normal.normalize(), ray.destination.normalize());
 	if (discrim < 0)
 		return false;
-	coords3D originsinter = ray.origin.getNormal() - center.getNormal();
-	t = dotp(originsinter, normal.getNormal());
+	coords3D originsinter = ray.origin.normalize() - center.normalize();
+	t = dotp(originsinter, normal.normalize());
 	return (t >= 0);
 }

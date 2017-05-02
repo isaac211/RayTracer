@@ -60,7 +60,7 @@ void RayTracer::printImage(const QString &path)
 					//Color based on light reflection
 					const coords3D &lightRef = light.getLocation();
 					const coords3D &normalRef = s.getNormal(inter);
-					coordsType scale = lambert*dotp(lightRef.getNormal(), normalRef.getNormal());
+					coordsType scale = lambert*dotp(lightRef.normalize(), normalRef.normalize());
 					scale = (scale < 0) ? 0 : scale;
 
 					coords3D precolor = (coords3D(r, g, b) *scale) * lightInt;

@@ -40,7 +40,7 @@ struct coords3D
 		return (this->x != b.x) ? false : (this->y != b.y) ? false : (this->z != b.z) ? false : true;
 	}
 
-	coords3D getNormal() const
+	coords3D normalize() const
 	{
 		coordsType mg = std::sqrt(x*x + y*y + z*z);
 		return coords3D(x / mg, y / mg, z / mg);
