@@ -13,3 +13,13 @@ coords3D Plane::getNormal() const
 {
 	return normal;
 }
+
+bool Plane::intersect(const rayType &ray, coordsType &t) const
+{
+	coordsType discrim = dotp(normal.getNormal(), ray.destination.getNormal());
+	if (discrim < 0)
+		return false;
+	coords3D originsinter = ray.origin.getNormal() - center.getNormal();
+	t = dotp(originsinter, normal.getNormal());
+	return (t >= 0);
+}

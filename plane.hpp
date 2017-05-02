@@ -8,9 +8,8 @@ public:
 		colorType cl = colorType(),
 		lambertType lamb = 0,
 		coords3D norm = coords3D());
-
-
 	coords3D getNormal() const;
+	bool intersect(const rayType &ray, coordsType &t) const;
 
 private:
 	coords3D normal;
