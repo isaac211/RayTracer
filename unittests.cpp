@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #define CATCH_CONFIG_COLOUR_NONE
-#define RELPATH 1
+#define RELPATH 0
 #include "catch.hpp"
 
 #include "ray_tracer.hpp"
