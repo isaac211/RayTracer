@@ -29,15 +29,29 @@ bool Sphere::intersect(const rayType &ray, coordsType &t) const
 	//Calculate discriminant, no intersect if number close to 0
 	coordsType discrim = b*b - 4 *a* c;
 
+	//Choose between two possible quadratic answers for surface intersection and return it
+	coordsType t0, t1;
 	if (discrim < 0)
 		return false;
+	else if (discrim == 0)
+		t0 = t1 = -b / a;
+	else
+	{
+		discrim = std::sqrt(discrim);
+		coordsType q = (b <= 0) ? (-b + discrim) : (-b - discrim);
+		t0 = q/a;
+		t1 = c/q;
+	}
 
-	//Choose between two possible quadratic answers for surface intersection and return it
-	discrim = std::sqrt(discrim);
-	coordsType t0 = -b - discrim;
-	coordsType t1 = -b + discrim;
-	t = (t0 < t1) ? t0 : t1;
+	if (t0 > t1)
+		std::swap(t0, t1);
 
+	if (t0 < 0)
+	{
+		t0 = t1;
+		if (t0 < 0) return false;
+	}
+	t = t0;
 	return true;
 }
 
