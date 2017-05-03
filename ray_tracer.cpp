@@ -24,6 +24,7 @@ void RayTracer::printImage(const QString &path)
 	const auto lightInt = light.getIntensity();
 
 	coords3D camCenter(scene.getCamera().getCenter());
+	coords3D camNormal(scene.getCamera().getNormal());
 	focusType focus(scene.getCamera().getFocus());
 
 	const QRgb black = qRgb(0, 0, 0); //default background color
@@ -43,9 +44,11 @@ void RayTracer::printImage(const QString &path)
 		for (sizeType j = 0; j < imageY; ++j)
 			for (sizeType i = 0; i < imageX; ++i)
 			{
-				const coordsType pixelX = resX*(i - (imageX / 2)); //TODO: Apply resolution
+				const coordsType pixelX = resX*(i - (imageX / 2));
 				const coordsType pixelY = resY*(j - (imageY / 2));
-				const rayType ray(camCenter + coords3D(pixelX, pixelY, 0), coords3D(0, 0, -focus));
+				const coords3D newOrig = camNormal * -focus + camCenter;
+				const coords3D newDest = (coords3D(pixelX, pixelY, camCenter.z) - newOrig);
+				const rayType ray(newOrig, newDest);
 
 				//Iterate through each pixel; set color to sphere if intersection occurs
 				coordsType t = 0;
