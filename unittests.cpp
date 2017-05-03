@@ -211,17 +211,41 @@ TEST_CASE("Test Math", "[OBJECT][RAY_TRACER]")
 	}
 }
 
-TEST_CASE("Test intersections","[SPHERE][PLANE]")
+TEST_CASE("Test renders","[SPHERE][PLANE]")
 {
-	SECTION("sphere")
+	SECTION("scene0")
 	{
 		Environment A;
-#if RELPATH == 0
-		REQUIRE_THROWS(A.unpackJSON("/vagrant/tests/scene0.json"));
+		#if RELPATH == 0
+		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene0.json"));
 #else
 		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene0.json"));
 #endif
+		RayTracer scene(A);
+		REQUIRE_NOTHROW(scene.printImage("./scene0.png"));
+	}
 
+	SECTION("scene1")
+	{
+		Environment A;
+		#if RELPATH == 0
+		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene1.json"));
+#else
+		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene1.json"));
+#endif
+		RayTracer scene(A);
+		REQUIRE_NOTHROW(scene.printImage("./scene1.png"));
+	}
 
+	SECTION("scene2")
+	{
+		Environment A;
+		#if RELPATH == 0
+		REQUIRE_NOTHROW(A.unpackJSON("/vagrant/tests/scene2.json"));
+#else
+		REQUIRE_NOTHROW(A.unpackJSON("../tests/scene2.json"));
+#endif
+		RayTracer scene(A);
+		REQUIRE_NOTHROW(scene.printImage("./scene2.png"));
 	}
 }
