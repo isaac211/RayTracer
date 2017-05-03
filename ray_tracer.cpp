@@ -43,8 +43,8 @@ void RayTracer::printImage(const QString &path)
 		for (sizeType j = 0; j < imageY; ++j)
 			for (sizeType i = 0; i < imageX; ++i)
 			{
-				const coordsType pixelX = (i - (imageX / 2)); //TODO: Apply resolution
-				const coordsType pixelY = (j - (imageY / 2));
+				const coordsType pixelX = resX*(i - (imageX / 2)); //TODO: Apply resolution
+				const coordsType pixelY = resY*(j - (imageY / 2));
 				const rayType ray(camCenter + coords3D(pixelX, pixelY, 0), coords3D(0, 0, -focus));
 
 				//Iterate through each pixel; set color to sphere if intersection occurs

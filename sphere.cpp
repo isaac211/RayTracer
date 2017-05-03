@@ -24,17 +24,18 @@ bool Sphere::intersect(const rayType &ray, coordsType &t) const
 
 	const coordsType b = 2 * dotp(oc, ray.destination);
 	const coordsType c = dotp(oc, oc) - radius*radius;
+	const coordsType a = dotp(ray.destination, ray.destination);
 
 	//Calculate discriminant, no intersect if number close to 0
-	coordsType discrim = b*b - 4 * c;
+	coordsType discrim = b*b - 4 *a* c;
 
 	if (discrim < 0)
 		return false;
 
 	//Choose between two possible quadratic answers for surface intersection and return it
 	discrim = std::sqrt(discrim);
-	const coordsType t0 = -b - discrim;
-	const coordsType t1 = -b + discrim;
+	coordsType t0 = -b - discrim;
+	coordsType t1 = -b + discrim;
 	t = (t0 < t1) ? t0 : t1;
 
 	return true;
